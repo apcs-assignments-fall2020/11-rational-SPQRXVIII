@@ -12,23 +12,22 @@ public class Rational
      * Constructors have the same name as the class
      * Constructors have no return type
      */
-    public Rational(int a, int b)
-    {
+    public Rational(final int a, final int b) {
         numerator = a;
         denominator = b;
     }
-    
-    // This method takes two Rationals, add thems up, 
+
+    // This method takes two Rationals, add thems up,
     // and returns a Rational equal to the sum
 
     // Finds the greatest common factor between a and b
-    public static int greatestCommonFactor(int a, int b){
+    public static int greatestCommonFactor(final int a, final int b) {
         int gcd = 1;
 
-        int k = Math.max(a, b);
-        
-        for(int i = 1; i <= k; i ++){
-            if (a%i == 0 && b%i == 0){
+        final int k = Math.max(a, b);
+
+        for (int i = 1; i <= k; i++) {
+            if (a % i == 0 && b % i == 0) {
                 gcd = i;
             }
         }
@@ -39,52 +38,79 @@ public class Rational
     // This method is given a rational, and returns a simplified version
     // of the input rational
     // e.g. simplify(2/4) => 1/2
-    //      simplify(1/2) => 1/2
-public static Rational simplify(Rational r)
-{
-    int factor = Rational.greatestCommonFactor(r.numerator, r.denominator);
-    int newNumerator = r.numerator/factor;
-    int newDenominator = r.denominator/factor;
-    Rational x = new Rational(newNumerator, newDenominator);
-    return x;
-}
+    // simplify(1/2) => 1/2
+    public static  Rational simplify( Rational r) {
+         int factor = Rational.greatestCommonFactor(r.numerator, r.denominator);
+         int newNumerator = r.numerator / factor;
+         int newDenominator = r.denominator / factor;
+         Rational x = new Rational(newNumerator, newDenominator);
+        return x;
+    }
+    public static Rational add(Rational r, Rational s){
+        int newNumerator = r.numerator * s.denominator + s.numerator * r.denominator;
+         int newDenominator = r.denominator * s.denominator;
 
-    public static Rational add(Rational r, Rational s)
-    {
-        int newNumerator = r.numerator*s.denominator + s.numerator*r.denominator;
-        int newDenominator = r.denominator*s.denominator; 
-        
-        Rational x = new Rational(newNumerator, newDenominator);
+         Rational x = new Rational(newNumerator, newDenominator);
         return simplify(x);
     }
 
+    public  Rational add(  Rational s) {
+         int newNumerator = this.numerator * s.denominator + s.numerator * this.denominator;
+         int newDenominator = this.denominator * s.denominator;
 
-public static Rational substract(Rational r, Rational s)
-{
-    int newNumerator = r.numerator*s.denominator - s.numerator*r.denominator;
-    int newDenominator = r.denominator*s.denominator; 
+         Rational x = new Rational(newNumerator, newDenominator);
+        return simplify(x);
+    }
+
+    public static Rational subtract(  Rational r, Rational s) {
+         int newNumerator = r.numerator * s.denominator - s.numerator * r.denominator;
+         int newDenominator = r.denominator * s.denominator;
+        Rational x = new Rational(newNumerator, newDenominator);
+        x = simplify(x);
+        return x;
+    }
+
+
+    public  Rational subtract(   Rational s) {
+         int newNumerator = this.numerator * s.denominator - s.numerator * this.denominator;
+         int newDenominator = this.denominator * s.denominator;
+        Rational x = new Rational(newNumerator, newDenominator);
+        x = simplify(x);
+        return x;
+    }
+
+public static Rational multiply(Rational r, Rational s) {
+         int newNumerator = r.numerator * s.numerator;
+         int newDenominator = r.denominator * s.denominator;
+        Rational x = new Rational(newNumerator, newDenominator);
+        x = simplify(x);
+        return x;
+    }
+
+    public  Rational multiply( Rational s) {
+         int newNumerator = this.numerator * s.numerator;
+         int newDenominator = this.denominator * s.denominator;
+        Rational x = new Rational(newNumerator, newDenominator);
+        x = simplify(x);
+        return x;
+    }
+
+    public static  Rational divide( Rational r, Rational s) {
+    int newNumerator = r.numerator * s.denominator;
+    int newDenominator = r.denominator * s.numerator;
     Rational x = new Rational(newNumerator, newDenominator);
     x = simplify(x);
     return x;
-}
+    }
 
-public static Rational multiply(Rational r, Rational s)
-{
-    int newNumerator = r.numerator*s.numerator;
-    int newDenominator = r.denominator*s.denominator; 
+
+    public  Rational divide( Rational s) {
+         int newNumerator = this.numerator * s.denominator;
+         int newDenominator = this.denominator * s.numerator;
     Rational x = new Rational(newNumerator, newDenominator);
     x = simplify(x);
     return x;
-}
-
-public static Rational divide(Rational r, Rational s)
-{
-    int newNumerator = r.numerator*s.denominator;
-    int newDenominator = r.denominator*s.numerator; 
-    Rational x = new Rational(newNumerator, newDenominator);
-    x = simplify(x);
-    return x;
-}
+    }
 
 
 
@@ -93,33 +119,10 @@ public static Rational divide(Rational r, Rational s)
     @Override
     public String toString()
     {
-        return this.numerator + "/" + this.denominator;
+        return numerator + "/" + denominator;
     }
 
 
-    public Rational add(Rational s)
-    {
-        // REPLACE WITH YOUR CODE HERE
-        return null;
-    }
-    
-    public Rational subtract(Rational s)
-    {
-        // REPLACE WITH YOUR CODE HERE
-        return null;
-    }
-    
-    public Rational multiply(Rational s)
-    {
-        // REPLACE WITH YOUR CODE HERE
-        return null;
-    }
-    
-    public Rational divide(Rational s)
-    {
-        // REPLACE WITH YOUR CODE HERE
-        return null;
-    }
 }
 
 
